@@ -1,0 +1,35 @@
+{
+    "name": "jcanda/gotomeeting",
+    "description": "GotoMeeting API wrapper for PHP",
+    "license": "MIT",
+    "keywords": [
+        "gotomeeting",
+        "meeting",
+        "php"
+    ],
+    "authors": [
+        {
+            "name": "Juan Canda",
+            "email": "info@zapasoft.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "monolog/monolog": "^1.23",
+        "nategood/httpful": "^0.2",
+        "guzzlehttp/guzzle": "^6.3",
+        "nesbot/carbon": "~1.26"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jcanda\\Gotomeeting\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jcanda\\Gotomeeting\\Test\\": "tests"
+        }
+    },
+    "minimum-stability": "stable"
+}
