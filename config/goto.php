@@ -6,5 +6,6 @@ define('DEFAULT_TIMEZONE', 'Europe/Madrid');
 define('GOTO_DIRECT_USER', 'xxx@test.com');
 define('GOTO_CONSUMER_SECRET', '4564ghghghfg');
 define('GOTO_CONSUMER_KEY', 'jZyzuce9fG0');
+define('GOTO_CONSUMER_KEY_SECRET', 'adeweWERFWwerwe');
 date_default_timezone_set('Europe/Madrid');
 define('DATE_FORMAT_INPUT', 'Y-m-d\TH:i:s\Z');

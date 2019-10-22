@@ -107,17 +107,20 @@ trait GotoClient
     function getAuthObject($path, $parameters = null)
     {
         try {
-            $this->response = Request::get($this->getUrl($this->AUTH_uri, $path, $parameters))
+            $this->response = Request::post($this->getUrl($this->AUTH_uri, $path))
                     ->strictSSL($this->verify_ssl)
                     ->addHeaders($this->determineHeaders())
                     ->timeout($this->timeout)
                     ->expectsJson()
+                    ->sendsForm()
+                    ->body(http_build_query($parameters))                    
                     ->send();
         } catch (\Exception $e) {
-            $this->throwResponseException('GET', $this->response, $e->getMessage());
+            $this->throwResponseException('POST', $this->response, $e->getMessage());
         }
 
-        if ($this->response->code >= 201) {
+        if ($this->response->code >= 201 && !isset($this->response->body->access_token)) {
+            var_dump($this->response->body);
             return false;
         }
 
@@ -127,6 +130,8 @@ trait GotoClient
 
     private function determineHeaders()
     {
+        $this->headers['Authorization'] = 'Basic '.base64_encode(GOTO_CONSUMER_KEY.':'.GOTO_CONSUMER_KEY_SECRET);
+        
         // if the accessObject exist it means the API can probably authenticate by token, this add it to the headers
         if (isset($_SESSION['GOTO_ACCESS_OBJECT'])) {
             //$this->headers['Authorization'] = $this->getAccessToken();
